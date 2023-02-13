@@ -1,0 +1,151 @@
+
+Book モデルに関するテスト
+  実際に保存してみる
+[32m    有効な投稿内容の場合は保存されるか[0m
+  空白のバリデーションチェック
+[32m    titleが空白の場合にバリデーションチェックされ空白のエラーメッセージが返ってきているか[0m
+[32m    bodyが空白の場合にバリデーションチェックされ空白のエラーメッセージが返ってきているか[0m
+  titleを空白で投稿した場合に画面にエラーメッセージが表示されているか
+[32m    エラーメッセージは正しく表示されるか[0m
+  bodyを空白で投稿した場合に画面にエラーメッセージが表示されているか
+[32m    エラーメッセージは正しく表示されるか[0m
+
+投稿のテスト
+  トップ画面(root_path)のテスト
+    表示の確認
+[32m      トップ画面(root_path)に一覧ページへのリンクが表示されているか[0m
+[32m      root_pathが"/"であるか[0m
+  一覧画面のテスト
+    一覧の表示とリンクの確認
+[32m      bookの一覧表示(tableタグ)と投稿フォームが同一画面に表示されているか[0m
+[31m      bookのタイトルと感想を表示し、詳細・編集・削除のリンクが表示されているか (FAILED - 1)[0m
+[32m      Create Bookボタンが表示される[0m
+    投稿処理に関するテスト
+[31m      投稿に成功しサクセスメッセージが表示されるか (FAILED - 2)[0m
+[32m      投稿に失敗する[0m
+[32m      投稿後のリダイレクト先は正しいか[0m
+    book削除のテスト
+[32m      application.html.erbにjavascript_pack_tagを含んでいるか[0m
+[31m      bookの削除 (FAILED - 3)[0m
+  詳細画面のテスト
+    表示の確認
+[32m      本のタイトルと感想が画面に表示されていること[0m
+[32m      Editリンクが表示される[0m
+[32m      Backリンクが表示される[0m
+    リンクの遷移先の確認
+[32m      Editの遷移先は編集画面か[0m
+[32m      Backの遷移先は一覧画面か[0m
+  編集画面のテスト
+    表示の確認
+[32m      編集前のタイトルと感想がフォームに表示(セット)されている[0m
+[32m      Update Bookボタンが表示される[0m
+[31m      Showリンクが表示される (FAILED - 4)[0m
+[31m      Backリンクが表示される (FAILED - 5)[0m
+    リンクの遷移先の確認
+[31m      Showの遷移先は詳細画面か (FAILED - 6)[0m
+[31m      Backの遷移先は一覧画面か (FAILED - 7)[0m
+    更新処理に関するテスト
+[31m      更新に成功しサクセスメッセージが表示されるか (FAILED - 8)[0m
+[31m      更新に失敗しエラーメッセージが表示されるか (FAILED - 9)[0m
+[32m      更新後のリダイレクト先は正しいか[0m
+
+Failures:
+
+  1) 投稿のテスト 一覧画面のテスト 一覧の表示とリンクの確認 bookのタイトルと感想を表示し、詳細・編集・削除のリンクが表示されているか
+     [31mFailure/Error: expect(show_link.native.inner_text).to match(/destroy/i)[0m
+     [31m[0m
+     [31m  expected "Destory" to match /destroy/i[0m
+     [31m  Diff:[0m[0m
+     [31m  [0m[34m@@ -1 +1 @@[0m
+     [31m  [0m[31m-/destroy/i[0m
+     [31m  [0m[32m+"Destory"[0m
+     [31m  [0m[0m
+     [36m# ./spec/system/books_spec.rb:47:in `block (5 levels) in <main>'[0m
+     [36m# ./spec/system/books_spec.rb:33:in `each_with_index'[0m
+     [36m# ./spec/system/books_spec.rb:33:in `block (4 levels) in <main>'[0m
+
+  2) 投稿のテスト 一覧画面のテスト 投稿処理に関するテスト 投稿に成功しサクセスメッセージが表示されるか
+     [31mFailure/Error: expect(page).to have_content 'successfully'[0m
+     [31m  expected to find text "successfully" in "投稿がありました\nTitle\n6oai6\nBody\nyxh15lj4v52or39kk9oh\nEdit Back"[0m
+     [36m# ./spec/system/books_spec.rb:60:in `block (4 levels) in <main>'[0m
+
+  3) 投稿のテスト 一覧画面のテスト book削除のテスト bookの削除
+     [31mFailure/Error: click_link 'Destroy', match: :first[0m
+     [31m[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find link "Destroy"[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.38.0/lib/capybara/node/finders.rb:310:in `block in synced_resolve'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.38.0/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.38.0/lib/capybara/node/finders.rb:299:in `synced_resolve'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.38.0/lib/capybara/node/finders.rb:60:in `find'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.38.0/lib/capybara/node/actions.rb:42:in `click_link'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.38.0/lib/capybara/session.rb:773:in `click_link'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.38.0/lib/capybara/dsl.rb:52:in `call'[0m
+     [36m# /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/capybara-3.38.0/lib/capybara/dsl.rb:52:in `click_link'[0m
+     [36m# ./spec/system/books_spec.rb:88:in `block (4 levels) in <main>'[0m
+
+  4) 投稿のテスト 編集画面のテスト 表示の確認 Showリンクが表示される
+     [31mFailure/Error: expect(show_link.native.inner_text).to match(/show/i)[0m
+     [31m[0m
+     [31m  expected "Back" to match /show/i[0m
+     [31m  Diff:[0m[0m
+     [31m  [0m[34m@@ -1 +1 @@[0m
+     [31m  [0m[31m-/show/i[0m
+     [31m  [0m[32m+"Back"[0m
+     [31m  [0m[0m
+     [36m# ./spec/system/books_spec.rb:140:in `block (4 levels) in <main>'[0m
+
+  5) 投稿のテスト 編集画面のテスト 表示の確認 Backリンクが表示される
+     [31mFailure/Error: expect(back_link.native.inner_text).to match(/back/i)[0m
+     [31m[0m
+     [31mNoMethodError:[0m
+     [31m  undefined method `native' for nil:NilClass[0m
+     [31m[0m
+     [31m          expect(back_link.native.inner_text).to match(/back/i)[0m
+     [31m                          ^^^^^^^[0m
+     [36m# ./spec/system/books_spec.rb:144:in `block (4 levels) in <main>'[0m
+
+  6) 投稿のテスト 編集画面のテスト リンクの遷移先の確認 Showの遷移先は詳細画面か
+     [31mFailure/Error: expect(current_path).to eq('/books/' + book.id.to_s)[0m
+     [31m[0m
+     [31m  expected: "/books/1"[0m
+     [31m       got: "/books"[0m
+     [31m[0m
+     [31m  (compared using ==)[0m
+     [36m# ./spec/system/books_spec.rb:151:in `block (4 levels) in <main>'[0m
+
+  7) 投稿のテスト 編集画面のテスト リンクの遷移先の確認 Backの遷移先は一覧画面か
+     [31mFailure/Error: back_link.click[0m
+     [31m[0m
+     [31mNoMethodError:[0m
+     [31m  undefined method `click' for nil:NilClass[0m
+     [31m[0m
+     [31m          back_link.click[0m
+     [31m                   ^^^^^^[0m
+     [36m# ./spec/system/books_spec.rb:155:in `block (4 levels) in <main>'[0m
+
+  8) 投稿のテスト 編集画面のテスト 更新処理に関するテスト 更新に成功しサクセスメッセージが表示されるか
+     [31mFailure/Error: expect(page).to have_content 'successfully'[0m
+     [31m  expected to find text "successfully" in "編集しました\nTitle\n6zikj\nBody\nzzyil5s2ty1vj8ptfkvp\nEdit Back"[0m
+     [36m# ./spec/system/books_spec.rb:164:in `block (4 levels) in <main>'[0m
+
+  9) 投稿のテスト 編集画面のテスト 更新処理に関するテスト 更新に失敗しエラーメッセージが表示されるか
+     [31mFailure/Error: expect(page).to have_content 'error'[0m
+     [31m  expected to find text "error" in "Editing Book\n2件のエラーが発生しました\nTitle can't be blank Body can't be blank\nTitle\nBody\nBack"[0m
+     [36m# ./spec/system/books_spec.rb:170:in `block (4 levels) in <main>'[0m
+
+Finished in 2.35 seconds (files took 1.91 seconds to load)
+[31m29 examples, 9 failures[0m
+
+Failed examples:
+
+[31mrspec ./spec/system/books_spec.rb:28[0m [36m# 投稿のテスト 一覧画面のテスト 一覧の表示とリンクの確認 bookのタイトルと感想を表示し、詳細・編集・削除のリンクが表示されているか[0m
+[31mrspec ./spec/system/books_spec.rb:56[0m [36m# 投稿のテスト 一覧画面のテスト 投稿処理に関するテスト 投稿に成功しサクセスメッセージが表示されるか[0m
+[31mrspec ./spec/system/books_spec.rb:86[0m [36m# 投稿のテスト 一覧画面のテスト book削除のテスト bookの削除[0m
+[31mrspec ./spec/system/books_spec.rb:138[0m [36m# 投稿のテスト 編集画面のテスト 表示の確認 Showリンクが表示される[0m
+[31mrspec ./spec/system/books_spec.rb:142[0m [36m# 投稿のテスト 編集画面のテスト 表示の確認 Backリンクが表示される[0m
+[31mrspec ./spec/system/books_spec.rb:148[0m [36m# 投稿のテスト 編集画面のテスト リンクの遷移先の確認 Showの遷移先は詳細画面か[0m
+[31mrspec ./spec/system/books_spec.rb:153[0m [36m# 投稿のテスト 編集画面のテスト リンクの遷移先の確認 Backの遷移先は一覧画面か[0m
+[31mrspec ./spec/system/books_spec.rb:160[0m [36m# 投稿のテスト 編集画面のテスト 更新処理に関するテスト 更新に成功しサクセスメッセージが表示されるか[0m
+[31mrspec ./spec/system/books_spec.rb:166[0m [36m# 投稿のテスト 編集画面のテスト 更新処理に関するテスト 更新に失敗しエラーメッセージが表示されるか[0m
+
